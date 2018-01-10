@@ -7,8 +7,6 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * @IgnoreAnnotation("SWG\Get")
- * @IgnoreAnnotation("SWG\Response")
  * @author bslezak
  *
  */
@@ -18,7 +16,7 @@ class PharmacyController extends Controller
 	/**
 	 * @SWG\Get(
 	 * path="/api/pharmacies",
-	 * @SWG\Response(response="200", description="List pharmacies"))
+	 * @SWG\Response(response="200", description="A list of pharmacies"))
 	 * @Route("/api/pharmacies/", name="pharmacies")
 	 *
 	 * @param Request $request

@@ -6,7 +6,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @IgnoreAnnotation("SWG\Info")
  * @author bslezak
  *
  */

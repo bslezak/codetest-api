@@ -7,6 +7,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
+ * @Route(path="/api/{version}/pharmacies")
  * @author bslezak
  *
  */
@@ -15,13 +16,13 @@ class PharmacyController extends Controller
 
 	/**
 	 * @SWG\Get(
-	 * path="/api/pharmacies",
+	 * path="/api/v1/pharmacies",
 	 * @SWG\Response(response="200", description="A list of pharmacies"))
-	 * @Route("/api/pharmacies/", name="pharmacies")
 	 *
+	 * @Route(path="/", name="pharmacies_index")
 	 * @param Request $request
 	 */
-	public function indexAction(Request $request)
+	public function index(Request $request)
 	{
 		$response = null;
 		if ($request->query->has('lat') && $request->query->has('long')) {

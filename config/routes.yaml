@@ -1,15 +1,16 @@
 index:
-    path: /
-    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::urlRedirectAction
-    defaults:
-        path: /api/{version}
-        permanent: true
-        version: v1
-
+  path: /
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+  defaults:
+    version: 'v1'
+    route: swagger_index
+    permanent: true
+    
 api:
-    path: /api
-    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::urlRedirectAction
-    defaults:
-        path: /api/{version}
-        permanent: true 
-        version: v1
+  path: /api/
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+  defaults:
+    version: 'v1'
+    route: swagger_index
+    permanent: true
+    

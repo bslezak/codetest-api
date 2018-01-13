@@ -7,6 +7,12 @@ use League\Csv\Reader;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
+/**
+ * Command to import pharmacy records into a database
+ *
+ * @author Brian Slezak <brian@theslezaks.com>
+ *
+ */
 class ImportPharmacies extends Command
 {
 
@@ -51,8 +57,13 @@ class ImportPharmacies extends Command
         $io = new SymfonyStyle($input, $output);
         $io->title('Importing records ...');
 
+        // Create a csv reader
         $csvReader = Reader::createFromPath('%kernel.root_dir%/../var/pharmacies.csv', 'r');
+
+        // Set header offset
         $csvReader->setHeaderOffset(0);
+
+        // Get records
         $records = $csvReader->getRecords();
         $recordCount = 0;
         foreach ($records as $row) {

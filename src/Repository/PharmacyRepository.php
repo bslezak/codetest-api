@@ -1,28 +1,49 @@
 <?php
-
 namespace App\Repository;
 
 use App\Entity\Pharmacy;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\DBAL\Driver\Statement;
+use Doctrine\DBAL\Driver\ResultStatement;
+use Doctrine\ORM\Query;
+use Doctrine\ORM\Internal\HydrationCompleteHandler;
 
+/**
+ * PharmacyRepository
+ *
+ * @author Brian Slezak <brian@theslezaks.com>
+ *
+ */
 class PharmacyRepository extends ServiceEntityRepository
 {
+
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Pharmacy::class);
     }
 
-    /*
-    public function findBySomething($value)
+    /**
+     * Find pharmacy nearest given latitude and longitude
+     *
+     * @param float $latitude
+     * @param float $longitude
+     * @return array
+     */
+    public function findNearest(float $latitude, float $longitude)
     {
-        return $this->createQueryBuilder('p')
-            ->where('p.something = :value')->setParameter('value', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        /**
+         *
+         * @var Statement $statement
+         */
+        $statement = $this->getEntityManager()
+            ->getConnection()
+            ->prepare('CALL sp_nearby_pharmacy(:latitude, :longitude);');
+        $statement->bindValue('latitude', $latitude);
+        $statement->bindValue('longitude', $longitude);
+        $statement->execute();
+        $results = $statement->fetchAll();
+
+        return $results[0];
     }
-    */
 }

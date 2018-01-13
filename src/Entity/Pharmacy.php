@@ -4,9 +4,13 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\PharmacyRepository")
+ * Pharmacy Entity
+ *
+ * @author Brian Slezak <brian@theslezaks.com>
+ *
+ *         @ORM\Entity(repositoryClass="App\Repository\PharmacyRepository")
  */
-class Pharmacy
+class Pharmacy implements \JsonSerializable
 {
 
     /**
@@ -211,5 +215,23 @@ class Pharmacy
     public function setLongitude($longitude)
     {
         $this->longitude = $longitude;
+    }
+
+    /**
+     * Gets a serializable form of a pharmacy object
+     *
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        return array(
+            'name' => $this->name,
+            'address' => $this->address,
+            'city' => $this->city,
+            'state' => $this->state,
+            'zip' => $this->zip,
+            'latitude' => $this->latitude,
+            'longitude' => $this->longitude
+        );
     }
 }

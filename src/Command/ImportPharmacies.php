@@ -67,7 +67,10 @@ class ImportPharmacies extends Command
         $records = $csvReader->getRecords();
         $recordCount = 0;
         foreach ($records as $row) {
-
+            // Let's trim all whitespaces as data looks dirty
+            foreach ($row as &$column) {
+                $column = $this->trimLeadingTrailingSpaces($column);
+            }
             // Create a new pharmacy record and store in database
             $pharmacy = new Pharmacy();
 
@@ -79,7 +82,7 @@ class ImportPharmacies extends Command
             $pharmacy->setLatitude($row['latitude']);
             $pharmacy->setLongitude($row['longitude']);
 
-            // Save this record
+            // Store this record
             $this->em->persist($pharmacy);
             $recordCount ++;
         }
@@ -87,6 +90,17 @@ class ImportPharmacies extends Command
         // Flush the entity manager and store into database
         $this->em->flush();
         $io->success("Import completed! ($recordCount) records imported");
+    }
+
+    /**
+     * Trim all leading and trailing whitespace
+     *
+     * @param string $value
+     * @return string
+     */
+    protected function trimLeadingTrailingSpaces(string $value)
+    {
+        return ltrim(rtrim($value));
     }
 }
 

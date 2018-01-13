@@ -4,17 +4,10 @@
 SET NAMES 'utf8';
 
 --
--- Set default database
---
-USE codetest-api;
-
-DELIMITER $$
-
---
 -- Create function "fn_distance_miles"
 --
-CREATE DEFINER = 'mysqldev'@'%'
-FUNCTION fn_distance_miles(`src_lat` float, `src_long` float, `dst_lat` float, `dst_long` float )
+DROP FUNCTION IF EXISTS fn.distance_miles;
+CREATE FUNCTION fn_distance_miles(`src_lat` float, `src_long` float, `dst_lat` float, `dst_long` float )
   RETURNS decimal(10,4)
 BEGIN
 
@@ -23,7 +16,6 @@ return 3959.0 *
     * cos( radians( `src_long` ) - radians(`dst_long`) ) 
     + sin( radians(`src_lat`)) * sin( radians( `dst_lat` )));
 
-END
-$$
+END;
 
-DELIMITER ;
+LOAD DATA INFILE '.\var\pharmacies.csv' INTO TABLE pharmacy;

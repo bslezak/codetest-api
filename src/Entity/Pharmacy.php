@@ -2,6 +2,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Swagger\Annotations as SWG;
 
 /**
  * Pharmacy Entity
@@ -9,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @author Brian Slezak <brian@theslezaks.com>
  *
  *         @ORM\Entity(repositoryClass="App\Repository\PharmacyRepository")
+ *         @SWG\Definition(required={"name"}, type="object", @SWG\Xml(name="Pharmacy"))
  */
 class Pharmacy implements \JsonSerializable
 {
@@ -26,6 +28,7 @@ class Pharmacy implements \JsonSerializable
 
     /**
      * @ORM\Column(type="string")
+     * @SWG\Property(example="The Pharmacy Store",)
      *
      * @var string
      */
@@ -33,6 +36,7 @@ class Pharmacy implements \JsonSerializable
 
     /**
      * @ORM\Column(type="string")
+     * @SWG\Property(example="404 Null St")
      *
      * @var string
      */
@@ -40,6 +44,7 @@ class Pharmacy implements \JsonSerializable
 
     /**
      * @ORM\Column(type="string")
+     * @SWG\Property(example="Mankato")
      *
      * @var string
      */
@@ -47,6 +52,7 @@ class Pharmacy implements \JsonSerializable
 
     /**
      * @ORM\Column(type="string")
+     * @SWG\Property(example="MS")
      *
      * @var string
      */
@@ -54,6 +60,7 @@ class Pharmacy implements \JsonSerializable
 
     /**
      * @ORM\Column(type="integer")
+     * @SWG\Property(example="96522")
      *
      * @var int
      */
@@ -61,6 +68,7 @@ class Pharmacy implements \JsonSerializable
 
     /**
      * @ORM\Column(type="float")
+     * @SWG\Property(example="39.828387")
      *
      * @var float
      */
@@ -68,6 +76,7 @@ class Pharmacy implements \JsonSerializable
 
     /**
      * @ORM\Column(type="float")
+     * @SWG\Property(example="-98.579469")
      *
      * @var float
      */
@@ -78,6 +87,7 @@ class Pharmacy implements \JsonSerializable
      * @return number
      */
     public function getPharmacy_id()
+
     {
         return $this->pharmacy_id;
     }

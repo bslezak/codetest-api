@@ -32,8 +32,14 @@ class PharmacyController extends Controller
     }
 
     /**
-     * @SWG\Get(path="/api/v1/pharmacy",
-     * @SWG\Response(response="200", description="A list of pharmacies"))
+     * @SWG\Get(path="/api/v1/pharmacy/",
+     * tags={"pharmacy"},
+     * description="Retrieve pharmacy list or nearest location if filtered by latitude and longitude",
+     * produces={"application/json"},
+     * @SWG\Response(response="200", description="Successful operation",@SWG\Schema( type="array",@SWG\Items(ref="#/definitions/Pharmacy"))),
+     * @SWG\Parameter(name="latitude", in="query", description="A latitude coordinate to filter results by", type="number"),
+     * @SWG\Parameter(name="longitude", in="query", description="A longitude coordinate to filter results by", type="number"),
+     * )
      *
      * @Route(path="/", name="pharmacies_index")
      *
@@ -55,7 +61,9 @@ class PharmacyController extends Controller
         }
 
         // Return JSON response
-        return $this->json($results);
+        $jsonResponse = $this->json($results);
+
+        return $jsonResponse;
     }
 }
 

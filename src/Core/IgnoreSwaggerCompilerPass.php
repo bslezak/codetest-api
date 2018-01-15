@@ -6,7 +6,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Doctrine\Common\Annotations\AnnotationReader;
 
 /**
- * Custom complier pass to ignore all Swagger annotations
+ * Custom complier pass to ignore all Swagger annotations as these never do not need to be processed by the framework
  *
  * @author Brian Slezak <brian@theslezaks.com>
  *
@@ -49,4 +49,3 @@ class IgnoreSwaggerCompilerPass implements CompilerPassInterface
         AnnotationReader::addGlobalIgnoredName('SWG\Xml');
     }
 }
-

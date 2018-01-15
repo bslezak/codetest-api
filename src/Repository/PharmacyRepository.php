@@ -17,7 +17,6 @@ use Doctrine\ORM\Internal\HydrationCompleteHandler;
  */
 class PharmacyRepository extends ServiceEntityRepository
 {
-
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Pharmacy::class);
@@ -28,7 +27,7 @@ class PharmacyRepository extends ServiceEntityRepository
      *
      * @param float $latitude
      * @param float $longitude
-     * @return array
+     * @return array A Pharmacy record as an array, as we'll return additional distance information through the API
      */
     public function findNearest(float $latitude, float $longitude)
     {
@@ -44,6 +43,7 @@ class PharmacyRepository extends ServiceEntityRepository
         $statement->execute();
         $results = $statement->fetchAll();
 
+        // Only return the first result
         return $results[0];
     }
 }

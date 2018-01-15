@@ -1,5 +1,20 @@
 # codetest-api
 
+This project is a simple API that builds on the robust Symfony 3.4 framework. I chose this architecture not just to
+complete the puzzle, but to learn something new along the way.
+
+## Technologies Employed
+* Symfony 3.4 Framework
+* MySQL
+* Doctrine 2
+* [Swagger UI](https://swagger.io/swagger-ui/)
+
+## Future Improvements
+
+* Build out and abstract the API versioning system to support new version releases in an elegant manner
+* Make importing of records more user configurable, rather than a hard-coded location
+* More QC on API inputs
+
 ## Installation
 
 ### Installation Prerequisites
@@ -9,10 +24,11 @@ In order to run this project you must:
 1. Install [composer](https://getcomposer.org/download/)
 2. Have a mysql server available with a user that can create databases, functions, and stored procedures
 3. Have PHP version 7.0.8 or greater installed
-4. The PHP extension `php_pdo_mysql` enabled
+4. Install and enable the PHP extension `php_pdo_mysql`
 
 ### Installation Steps
-1. Retrieve a copy of the codebase from [https://github.com/bslezak/codetest-api](http://github.com/bslezak/codetest-api) by the command/:
+1. Retrieve a copy of the codebase from [https://github.com/bslezak/codetest-api](http://github.com/bslezak/codetest-api) 
+by the command:
 	
 		git clone https://github.com/bslezak/codetest-api.git
 or by downloading a release from:
@@ -24,7 +40,8 @@ or by downloading a release from:
 		cd <project-dir>
 		composer install
 		
-3. Edit the .env file, changing the line `DATABASE_URL=mysql://db_user:db_password@127.0.0.1:3306/codetest-api` with proper mysql credentials and host
+3. Edit the .env file, at minimum editing the line `DATABASE_URL=mysql://db_user:db_password@127.0.0.1:3306/codetest-api` 
+defining proper mysql credentials and host
 		
 4. Create the database, the schema, and import functions and stored procs:
 	
@@ -46,10 +63,10 @@ you should see the result:
 		 
 		 // Quit the server with CONTROL-C.
 		 
-7. Use [swagger](https://swagger.io/) to access the API documentation at http://127.0.0.1:8000/api/v1/
+7. Use [Swagger UI](https://swagger.io/swagger-ui/) to access the API documentation via http://localhost:8000/api/v1/
 
 	or
 
-8. Query the endpoint for nearest pharamcy by providing latitude and logitude through query strings such as:
+8. Directly query the endpoint like so:
 
 		http://localhost:8000/api/v1/pharmacy/?latitude=38.960457&longitude=-94.637407

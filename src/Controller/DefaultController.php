@@ -5,12 +5,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Swagger\Annotations as SWG;
-use Swagger;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
- * DefaultController provides swagger json interface
+ * DefaultController provides Swagger specification built from Annotations throughout controllers and entities
  *
  * @author Brian Slezak <brian@theslezaks.com>
  *
@@ -33,9 +31,9 @@ class DefaultController extends Controller
          */
         $swagger = \Swagger\scan($this->get('kernel')->getProjectDir() . '/src/');
 
+        // Build JSON Response with swagger output
         $json = new JsonResponse();
         $json->setContent(sprintf("%s", $swagger));
         return $json;
     }
 }
-

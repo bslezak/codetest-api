@@ -43,6 +43,7 @@ class ImportPharmacies extends Command
      */
     protected function configure()
     {
+        // Configure this command's name and description
         $this->setName('import:pharmacies');
         $this->setDescription('Imports pharmacy records from ./var/pharmacies.csv into a new database');
     }
@@ -67,6 +68,7 @@ class ImportPharmacies extends Command
         $records = $csvReader->getRecords();
         $recordCount = 0;
         foreach ($records as $row) {
+
             // Let's trim all whitespaces as data looks dirty
             foreach ($row as &$column) {
                 $column = $this->trimLeadingTrailingSpaces($column);
@@ -103,4 +105,3 @@ class ImportPharmacies extends Command
         return ltrim(rtrim($value));
     }
 }
-

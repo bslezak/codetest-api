@@ -4,7 +4,6 @@ namespace App\Controller\Api;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\Response;
 use App\Repository\PharmacyRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Swagger\Annotations as SWG;
@@ -28,6 +27,7 @@ class PharmacyController extends Controller
 
     public function __construct(PharmacyRepository $pr)
     {
+        // Keep a local instance of the PharmacyRepository
         $this->pharmacyRepository = $pr;
     }
 
@@ -66,4 +66,3 @@ class PharmacyController extends Controller
         return $jsonResponse;
     }
 }
-

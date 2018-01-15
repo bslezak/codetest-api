@@ -87,7 +87,6 @@ class Pharmacy implements \JsonSerializable
      * @return number
      */
     public function getPharmacy_id()
-
     {
         return $this->pharmacy_id;
     }

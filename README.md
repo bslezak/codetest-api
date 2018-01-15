@@ -4,12 +4,12 @@
 
 ### Installation Prerequisites
 
-In order to run this project you have to have:
+In order to run this project you must:
 
-1. [composer](https://getcomposer.org/download/) installed
-2. A mysql server with a user that can create databases, functions, and stored procedures
-3. PHP version ^7.0.8 installed
-4. The PHP extension php_pdo_mysql enabled
+1. Install [composer](https://getcomposer.org/download/)
+2. Have a mysql server available with a user that can create databases, functions, and stored procedures
+3. Have PHP version 7.0.8 or greater installed
+4. The PHP extension `php_pdo_mysql` enabled
 
 ### Installation Steps
 1. Retrieve a copy of the codebase from [https://github.com/bslezak/codetest-api](http://github.com/bslezak/codetest-api) by the command/:
@@ -24,35 +24,32 @@ or by downloading a release from:
 		cd <project-dir>
 		composer install
 		
-3. Copy .env.dist to .env and edit the line DATABASE_URL=mysql://db_user:db_password@127.0.0.1:3306/codetest-api with proper mysql credentials and host
-
-		cp .env.dist .env
+3. Edit the .env file, changing the line `DATABASE_URL=mysql://db_user:db_password@127.0.0.1:3306/codetest-api` with proper mysql credentials and host
 		
-4. Create the database
+4. Create the database, the schema, and import functions and stored procs:
 	
 		php .\bin\console doctrine:database:create
-		
-5. Update the database
-
+		php .\bin\console doctrine:schema:create
 		php .\bin\console doctrine:database:import .\var\install.sql
 		
-6. Import the pharmacy table by placing the pharmacies.csv file into the .\var\ folder and running:
+5. Import the pharmacy table by placing the pharmacies.csv file into the `.\var\` folder and running:
 
 		php .\bin\console import:pharmacies
+	_Note that no CSV is provided with the codebase, but you could certainly create your own._
 		
-7. Run the local server with the command:
+6. If you don't have a web server to run the application, use PHP's built-in server with the command:
 	
-		php .\bin\console server:run
+		php .\bin\console server:run 0.0.0.0:8000
 you should see the result:
 
-		 [OK] Server listening on http://127.0.0.1:8000
+		 [OK] Server listening on http://0.0.0.0:8000
 		 
 		 // Quit the server with CONTROL-C.
 		 
-8. Use [swagger](https://swagger.io/) to access the API documentation at http://127.0.0.1:8000/api/v1/
+7. Use [swagger](https://swagger.io/) to access the API documentation at http://127.0.0.1:8000/api/v1/
 
 	or
 
-9. Query the endpoint for nearest pharamcy by providing latitude and logitude through query strings such as:
+8. Query the endpoint for nearest pharamcy by providing latitude and logitude through query strings such as:
 
 		http://localhost:8000/api/v1/pharmacy/?latitude=38.960457&longitude=-94.637407

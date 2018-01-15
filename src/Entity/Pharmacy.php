@@ -10,7 +10,7 @@ use Swagger\Annotations as SWG;
  * @author Brian Slezak <brian@theslezaks.com>
  *
  *         @ORM\Entity(repositoryClass="App\Repository\PharmacyRepository")
- *         @SWG\Definition(required={"name"}, type="object", @SWG\Xml(name="Pharmacy"))
+ *         @SWG\Definition(type="object", @SWG\Xml(name="Pharmacy"))
  */
 class Pharmacy implements \JsonSerializable
 {

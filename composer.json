@@ -11,6 +11,7 @@
         "nelmio/cors-bundle": "^1.5",
         "symfony/console": "^3.4",
         "symfony/doctrine-bridge": "^3.4",
+        "symfony/dotenv": "^3.4",
         "symfony/flex": "^1.0",
         "symfony/framework-bundle": "^3.4",
         "symfony/lts": "^3",
@@ -22,7 +23,6 @@
     },
     "require-dev": {
         "kint-php/kint": "^2.2",
-        "symfony/dotenv": "^3.4",
         "symfony/maker-bundle": "^1.0",
         "symfony/web-server-bundle": "^3.4"
     },
